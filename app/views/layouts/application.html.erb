@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Reservatron5000</title>
+  <title>Reservatron 5000</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/darkly/bootstrap.min.css" rel="stylesheet">
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a><%= link_to 'Reservatron 5000', root_path, :class => 'navbar-brand', id: "logo" %></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+            <li><%= link_to "Logged in as #{current_user.user_name.upcase}", user_path(current_user.id) %>
+              </li>
+            <li><%= link_to 'Browse', user_tools_path(current_user.id) %></li>
+            <li><%= link_to 'Log out', destroy_user_session_path(@user), method: :delete %></li>
+            <% end %>
+            <li><%= link_to 'Sign up now!', new_user_registration_path %></li>
+            <li><%= link_to 'Sign in', new_user_session_path %></li>
 
-<%= yield %>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-2'>
 
-</body>
+      </div>
+      <div class='col-md-1'>
+      </div>
+        <div class='col-md-6'>
+          <br>
+          <%= yield %>
+        </div>
+      <div class='col-md-3'>
+      </div>
+    </div>
+    <footer class="row">
+    <div class="large-12 columns">
+      <hr> <p>© Reservatron 5000 Inc.  2015</p>
+    </div>
+  </footer>
+  </body>
 </html>
