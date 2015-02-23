@@ -1,2 +1,27 @@
-<h1>Rooms#index</h1>
-<p>Find me in app/views/rooms/index.html.erb</p>
+<%= @rooms.each do |room| %>
+  <div class="row">
+    <div class="col-sm-6 col-md-6">
+      <div class="thumbnail">
+        <img src=<%= room.image_file_name %>>
+        <div class="caption">
+          <h3><%= room.name.upcase %></h3>
+          <p><%= room.description %></p>
+          <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default"><%= link_to 'Book now',
+                            new_user_meeting_path(current_user.id) %></button>
+            </div>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default"><%= link_to 'Check Availability' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+
+
+

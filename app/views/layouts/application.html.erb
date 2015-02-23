@@ -21,34 +21,32 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-            <li><%= link_to "Logged in as #{current_user.user_name.upcase}", user_path(current_user.id) %>
-              </li>
-            <li><%= link_to 'Browse', user_tools_path(current_user.id) %></li>
+            <li><%= link_to "Logged in as #{current_user.first_name.upcase}",
+                user_path(current_user.id) %></li>
+            <li><%= link_to 'Browse rooms', rooms_path %></li>
             <li><%= link_to 'Log out', destroy_user_session_path(@user), method: :delete %></li>
+            <li><%= link_to 'Book now', new_user_meeting_path(current_user.id) %></li>
             <% end %>
             <li><%= link_to 'Sign up now!', new_user_registration_path %></li>
             <li><%= link_to 'Sign in', new_user_session_path %></li>
+
+
 
         </div>
       </div>
     </div>
     <div class='row'>
-      <div class='col-md-2'>
-
-      </div>
-      <div class='col-md-1'>
-      </div>
-        <div class='col-md-6'>
-          <br>
+      <div class='col-md-1'></div>
+        <div class='col-md-11'>
           <%= yield %>
         </div>
-      <div class='col-md-3'>
+      <div class='col-md-1'>
       </div>
     </div>
-    <footer class="row">
-    <div class="large-12 columns">
-      <hr> <p>© Reservatron 5000 Inc.  2015</p>
-    </div>
+    <footer class="navbar-fixed row">
+      <div class="large-12 columns">
+        <hr> <p>© Reservatron 5000 Inc.  2015</p>
+      </div>
   </footer>
   </body>
 </html>

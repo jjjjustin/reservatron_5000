@@ -1,24 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'rooms/new'
+  resources :users do
+    resources :meetings
+  end
 
-  get 'rooms/index'
+  resources :rooms do
+    resources :meetings
+  end
 
-  get 'rooms/create'
-
-  get 'rooms/show'
-
-  get 'rooms/destroy'
-
-  get 'users/new'
-
-  get 'users/index'
-
-  get 'users/show'
-
-  get 'users/create'
-
-  get 'users/destroy'
 
   root 'users#new'
 
