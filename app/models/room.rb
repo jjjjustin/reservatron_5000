@@ -6,11 +6,12 @@ class Room < ActiveRecord::Base
 
   has_many :meetings
   has_attached_file :image,
-                    :url =>':s3_domain_url',
+                    :storage => :s3,
+                    :styles => { :medium => "300x300>", :thumb => "100x100>" },
+                    :default_url => "/images/:style/missing.png",
+                    :bucket => 'reservatron',
+                    :url => ":s3_domain_url",
                     :path => '/:class/:attachment/:id_partition/:style/:filename',
-                    :styles => { :medium => "300x300>",
-                    :thumb => "100x100>" },
-                    :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
 
