@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.0'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -67,3 +68,6 @@ end
 
 gem 'bootstrap-sass'
 gem 'simple_form'
+gem 'mandrill_dm'
+
+
