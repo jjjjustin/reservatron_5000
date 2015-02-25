@@ -11,6 +11,13 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
+  def show
+    @meetings = Meeting.all
+    @users = User.all
+    @rooms = Room.all
+  end
+
+
 
   def create
     @room = Room.new(room_params)

@@ -1,21 +1,6 @@
-class MeetingsController < ApplicationController
-
-  def new
-    @meeting = Meeting.new
-  end
-
-  def index
-    @meetings = Meeting.all
-  end
-
-  def show
-    @meetings = Meeting.all
-    @user = User.all
-    @room = Room.all
-  end
-
+class CommentsController < ApplicationController
   def create
-    @meeting = Meeting.new(meeting_params)
+    @comment = Comment.new(comment_params)
     user = User.find(params[:user_id])
     @meeting.user_id = current_user.id
     respond_to do |format|
@@ -30,12 +15,22 @@ class MeetingsController < ApplicationController
     end
   end
 
+  def new
+    @comment = Comment.new
+  end
+
+  def index
+  end
+
+  def show
+  end
+
+
 
   private
 
-    def meeting_params
-      params.require(:meeting).permit(:name, :start_time, :end_time, :room_id, :user_id)
+    def comment_params
+      params.require(:comment).permit(:body, :user_id, :meeting_id)
     end
-
-
 end
+
