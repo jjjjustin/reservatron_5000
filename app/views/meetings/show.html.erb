@@ -23,9 +23,14 @@
       <td><%= meeting.start_timestamp %></td>
       <td><%= meeting.end_timestamp %></td>
       <td><%= meeting.room.location %></td>
-      <td><%= link_to('Leave a Comment', new_meeting_comment_path(meeting.id), class: "btn btn-primary btn-lg") %></td>
+      <td><%= link_to('Leave a Comment', new_user_comment_path(meeting.id),
+            class: "btn btn-primary btn-lg") %></td>
       <% end %>
     </tr>
+      <% current_user.comments.each do |comment| %>
+        <%= comment.body %>
+      <% end %>
+    </div>
   </tbody>
 </table>
 

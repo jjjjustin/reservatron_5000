@@ -2,6 +2,7 @@ class MeetingsController < ApplicationController
 
   def new
     @meeting = Meeting.new
+    @room = Room.find(params[:room_id])
   end
 
   def index
@@ -9,19 +10,19 @@ class MeetingsController < ApplicationController
   end
 
   def show
-    @meetings = Meeting.all
+    @meeting = Meeting.find(params[:id])
     @user = User.all
     @room = Room.all
   end
 
   def create
     @meeting = Meeting.new(meeting_params)
-    user = User.find(params[:user_id])
     @meeting.user_id = current_user.id
+    @meeting.room_id = params[:room_id]
     respond_to do |format|
       if @meeting.save
         NotificationMailer.new_meeting(@meeting).deliver_now
-        format.html { redirect_to user_meetings_path, notice: 'Meeting was successfully created.' }
+        format.html { redirect_to meetings_path, notice: 'Meeting was successfully created.' }
         format.json { render :show, status: :created, location: @meeting }
       else
         format.html { render :new }

@@ -1,15 +1,16 @@
 <h1>Add a Comment</h1>
 
-<%= simple_form_for @comment do |f| %>
+<%= simple_form_for([current_user, @comment]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :body, required: true, autofocus: true %>
-    <%= f.input  :user, required: true %>
-    <%= f.input :meeting, required: true %>
-    <%= f.file_field :image %>
+    <%= f.select(:users, @users.id) %>
+    <%= f.select :meeting, [Meeting.all.name] %>
 
   <div class="form-actions">
-    <%= f.button :submit, "Book this meeting" %>
+    <%= f.button :submit, "Add comment" %>
   </div>
 <% end %>
+
+

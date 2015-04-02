@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all
+    @meetings = Meeting.all
   end
 
   def edit
@@ -12,9 +13,9 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @room = Room.find(params[:id])
     @meetings = Meeting.all
-    @users = User.all
-    @rooms = Room.all
+    @comment = Comment.find(params[:id])
   end
 
 

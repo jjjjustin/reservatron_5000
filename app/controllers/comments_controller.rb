@@ -1,12 +1,9 @@
 class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
-    user = User.find(params[:user_id])
-    @meeting.user_id = current_user.id
     respond_to do |format|
-      if @meeting.save
-        NotificationMailer.new_meeting(@meeting).deliver_now
-        format.html { redirect_to user_meetings_path, notice: 'Meeting was successfully created.' }
+      if @comment.save
+        format.html { redirect_to root_path, notice: 'Comment was added.' }
         format.json { render :show, status: :created, location: @meeting }
       else
         format.html { render :new }
@@ -17,12 +14,16 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
+    @meeting = Meeting.all
   end
 
   def index
+    @comments = Comment.all
+
   end
 
   def show
+    @comment = Comment.all
   end
 
 
